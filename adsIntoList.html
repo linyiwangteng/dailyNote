@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>列表中每隔3条数据插入一个广告</div>
+  <script>
+    var abc = [1,2,3,4,5];
+    var list = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n'];
+
+    function adsTolists(){
+      var insert_index = 0, list_index = 0,ad_index = 0;
+      var INTERVALNUM = 3;
+      return function(ads,artlist){
+        var ads_len = ads.length,newlist=[];
+        while(artlist.length){
+          if( (insert_index + 1) % (INTERVALNUM+1) == 0 ) {
+            var ads_index = ad_index % ads_len;
+            newlist.push(ads[ads_index]);
+            ad_index++;
+          }else{
+            newlist.push(artlist.shift());
+            list_index ++;
+          }
+          insert_index++;
+        }
+        console.log(newlist);
+      }
+    }
+    var adstolists = adsTolists();
+
+    adstolists(abc,list);
+    var list1=['aa','bb','cc','dd'];
+    
+    adstolists(abc,list1);
+    var list2=['aaa','bbb','ccc','ddd'];
+    adstolists(abc,list2);
+    var list3=['aaaa','bbbb','cccc','dddd'];
+    adstolists(abc,list3);
+  </script>
+</body>
+</html>
