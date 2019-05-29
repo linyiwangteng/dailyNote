@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+		content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0,viewport-fit=cover">
+	<link rel="shortcut icon" type="image/x-icon" href="//res.wx.qq.com/a/wx_fed/assets/res/NTI4MWU5.ico">
+	<link rel="mask-icon" href="//res.wx.qq.com/a/wx_fed/assets/res/MjliNWVm.svg" color="#4C4C4C">
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+		<script src="https://imgcache.qq.com/tencentvideo_v1/tvp/js/tvp.player_v2_zepto.js" charset="utf-8"></script>
+    <title></title>
+    <style>
+      .rich_media_content{
+        width: 100%;
+        height: 546px;
+      }
+    </style>
+	</head>
+	<body>
+		<div class="rich_media_content" id="js_content">
+			
+		</div>
+		
+	<script type="text/javascript">
+		//var vid = 't0508alameb';
+		var vid = 'n0660sjputv',PLAYTIME = 30;
+		function play_video (vid) {
+			var video , player, playStatus = 'pending';	
+			var elId = 'mod_player_skin_0';
+			$("#js_content").html('<div id="' + elId + '" class="player_skin" style="padding-top:6px;"></div>');
+			var elWidth = $("#js_content").width();
+			playVideo(vid, elId, elWidth);
+		}
+		function playVideo(vid, elId, elWidth) {
+				video = new tvp.VideoInfo();
+				video.setVid(vid);
+				player = new tvp.Player(elWidth, 200);
+				player.setCurVideo(video);
+				player.addParam("wmode", "transparent");
+				player.addParam("pic", tvp.common.getVideoSnapMobile(vid));
+				player.write(elId);
+        console.log(player);
+        player.onplaying = function() {
+					
+				};
+        player.onpause = function(){
+          setTimeout(function(){
+            PLAYTIME = PLAYTIME + 20;
+          },500);
+          
+				};
+				
+				player.ontimeupdate = function () {
+						var currentTime = player.getPlaytime();
+						if (currentTime >= PLAYTIME) {
+                player.pause();
+						}
+				};
+				
+			}
+	
+	    play_video(vid);
+	</script>	
+	</body>
+</html>
