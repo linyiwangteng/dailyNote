@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 实现 a == 1 && a == 2 && a ==3 -->
+  <script>
+    var a = {
+      arr: [3,2,1],
+      valueOf:function(){
+        console.group('valueOf');
+        console.log(this.arr);
+        console.groupEnd('valueOfend');
+        return this.arr.pop()
+      }
+    }
+    if(a == 1 && a== 2 && a == 3){console.log('pass')}
+    var b = {
+      arr: [3,2,1],
+      toString:function(){
+        console.group('toString');
+        console.log(this.arr);
+        console.groupEnd('toString');
+        return this.arr.pop();
+      }
+    }
+    if(b == 1 && b == 2 && b == 3) {console.log('pass')}
+
+    var c = {
+      arr:[3,2,1],
+      [Symbol.toPrimitive](){
+        console.group('Symbol.toPrimitive');
+        console.log(this.arr);
+        console.groupEnd('Symbol.toPrimitive');
+        return this.arr.pop();
+      }
+    }
+    if(c == 1 && c == 2 && c == 3){
+      console.log('pass');
+    }
+    var d = [1,2,3];
+    d.join = d.shift;
+    if(d == 1 && d == 2 && d== 3){
+      console.log('pass')
+    }
+
+
+/**
+ * Array.prototype.toString() 定义：
+ * 定义 array 为 ToObject(thisvalue)（原生方法，将当前数组转换成对象）；
+ * 定义 func 为 Get(array,'join')（原生方法，在这一步调用 join 方法）；
+ * 如果 IsCallble(func) （原生方法，判断是否有内部可调用的函数）为 false，则 设置 func 原生函数 %ObjProto_toString%（原生函数， toString 的具体实现）；
+ * 返回 Call(func,array)。
+ * 
+ * */ 
+
+
+
+
+
+  </script>
+</body>
+</html>
