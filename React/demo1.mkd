@@ -1,0 +1,51 @@
+React 核心技术 —— 虚拟DOM（Virtual DOM）
+在前端开发的过程中，我们经常会做的一件事就是将变化的数据实时更新到UI上，这时就需要对DOM进行更新和重新渲染，而频繁的DOM操作通常是性能瓶颈产生的原因之一，有时候我们会遇到这样一种尴尬的情况：比如有一个列表数据，当用户执行刷新操作时，Ajax会重新从后台请求数据，即使新请求的数据和上次完全相同，DOM也会被全部更新一遍并进行重新渲染，这样就产生了不必要的性能开销。
+
+React为此引入了虚拟DOM（Virtual DOM）机制：对于每一个组件，React会在内存中构建一个相对应的DOM树，基于React开发时所有的DOM构造都是通过虚拟DOM进行，每当组件的状态发生变化时，React都会重新构建整个DOM数据，然后将当前的整个DOM树和上一次的DOM树进行对比，得出DOM结构变化的部分(Patchs)，然后将这些Patchs 再更新到真实DOM中。整个过程都是在内存中进行，因此是非常高效的。
+
+
+
+虚拟DOM
+
+频繁的DOM操作通常是性能瓶颈产生的原因之一，
+有时候我们会遇到这样一种尴尬的情况：比如有一个列表数据，当用户执行刷新操作时，ajax会重新从后台请求数据，即使新请求的数据和上次完全相同，DOM也会被全部更新一遍并进行重新渲染，这样就会产上不必要的性能开销。
+
+React为此引入了虚拟DOM机制： 
+对于每一个组件，react会在内存中构建一个相对应的DOM树，基于React开发时 所有DOM构造 都是通过虚拟DOM进行，每当组件的状态发送变化时，React都会重新构建整个DOM数据，然后将当前的整个DOM和上一次的DOM树进行对比，得出DOM结构变化的部分（Patchs），然后将这些Patchs再更新到真实的DOM中，整个过程都是在内存中进行的，非常高效的。
+
+React 生命周期
+React 把每个组件都当作一个状态机来维护和管理，因此每个组件都拥有一套完整的生命周期，大致可以分为三个过程：初始化、更新和销毁。生命周期的每一个过程都明确的反映了组件的状态变化。对于开发来说就能很容易的把握组件的每个状态，不同的状态时期做对应的事情，互不干扰。以下是和组件生命周期相关的几个方法：
+
+getDefaultProps //创建组建
+
+getInitialState  //实例化状态
+
+componentWillMount  //挂载前
+
+componentDidMount //挂载后
+
+componentWillReceiveProps //属性被改变时
+
+shouldComponentUpdate //是否更新
+
+componentWillUpdate //更新前
+
+componentDidUpdate //更新后
+
+componentWillUnmount //销毁前
+
+-------------------------------
+getDefaultProps //创建组件
+
+getInitialState //实例化状态
+
+componentWillMount //挂载前
+
+componentDidMount  //挂载后
+
+shouldComponentUpdate //是否更新
+
+componentWillUpdate //更新前
+
+componentDidUpdate //更新后
+
