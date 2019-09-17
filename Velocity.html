@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>.element{position:relative;width:40px;height:40px;background: #ff0000;}</style>
+</head>
+<body>
+  <!-- dom -->
+  <div class="element"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
+  <script>
+    $(".element").velocity({
+        left: "200px"
+    }, {
+        duration: 450,
+        delay: 1000,
+        easing:'ease-in-out',
+        complete:function(){
+          console.log('animation complete');
+        }
+    });
+  </script>
+</body>
+</html>
