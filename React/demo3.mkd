@@ -1,0 +1,28 @@
+#### React如何实现自己的事件机制？
+
+React事件并没有绑定在真实的 Dom节点上，而是通过事件代理，在最外层的 document上对事件进行统一分发。
+
+React在自己的合成事件中重写了 stopPropagation方法，将 isPropagationStopped设置为 true，然后在遍历每一级事件的过程中根据此遍历判断是否继续执行。这就是 React自己实现的冒泡机制。
+
+
+
+#### 为何React事件要自己绑定this？
+
+在上面提到的事件处理流程中， React在 document上进行统一的事件分发， dispatchEvent通过循环调用所有层级的事件来模拟事件冒泡和捕获。
+
+在 React源码中，当具体到某一事件处理函数将要调用时，将调用 invokeGuardedCallback方法。
+
+  function invokeGuardedCallback(name,func,a) {
+    try{
+      func(a);
+    }catch(x){
+      if(caughtError === null) {
+        caughtError = x
+      }
+    }
+  }
+
+可见，事件处理函数是直接调用的，并没有指定调用的组件，所以不进行手动绑定的情况下直接获取到的 this是不准确的，所以我们需要手动将当前组件绑定到 this上。
+
+
+总结，react在document上进行统一事件分发，dispatchEvent通过循环调用所有层级的事件来模式事件冒泡和捕获，当具体到某一事件处理函数将要调用时，事件处理函数是直接调用的，并没有指定调用的组件，所以不进行手动绑定的话情况下直接获取到的this是不准确的，所以需要手动将当前组件绑定到this上。

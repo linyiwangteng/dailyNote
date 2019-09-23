@@ -12,5 +12,4 @@ let [first,second,third,fourth,fifth,sixth] = fibs();
 console.log(first);
 console.log(second);
 console.log(sixth);
-
-let aa = fibs();
+console.log('------');

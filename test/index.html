@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="container"></div>
+  <div class="abc" data-abc = '123'><span>adfasdfasdfasdfasd</span></div>
+  <div class="abc" data-abc = '1233'>adfasdfasdfasdfasd</div>
+  <div class="abc" data-abc = '1234'>adfasdfasdfasdfasd</div>
+  <div class="abc" data-abc = '1235'>adfasdfasdfasdfasd</div>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+    let now = Date.now();
+    const total = 100;
+    let ul = document.querySelector("#container");
+    let verial_ul = document.createDocumentFragment();
+    // for(let  i = 0; i<total;i++){
+    //   let li = document.createElement('li');
+    //   li.innerText = (Math.random() * total);
+    //   ul.appendChild(li);
+    // }
+    // console.log('js运行时间',Date.now() - now);
+    // setTimeout(() => {
+    //   console.log('总运行时间', Date.now() - now);
+    // }, 0);
+    let once = 20;
+    let page = total / 20;
+    let index = 0;
+    function loop(curTotal,curIndex){
+      if(curTotal <= 0 ){
+        return false;
+      }
+      let pageCount = Math.min(curTotal,once);
+      window.requestAnimationFrame(()=>{
+        
+        for(let i = 0; i< pageCount; i++){
+          let li = document.createElement('li');
+          li.innerText = curIndex+'~~~'+(Math.random() * total);
+          verial_ul.appendChild(li);
+        }
+        ul.appendChild(verial_ul);
+        loop(curTotal - once, ++curIndex);
+      })
+    }
+    loop(total,index);
+  </script>
+  <script src="./bind.js"></script>
+</body>
+</html>
