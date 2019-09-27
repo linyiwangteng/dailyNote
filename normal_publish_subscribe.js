@@ -71,7 +71,39 @@ class Subscribe1 {
     this.topics = {};
   }
 }
-
+class Subscribe2 {
+  constructor(){
+    this.topics = {};
+    this.subUid = -1;
+  }
+  // 订阅者
+  subscribe(topic,func){
+    if(!this.topics[topic]){
+      this.topics[topic] = []
+    }
+    let token = (++this.subUid).toString();
+    this.topics[topic].push({
+      func,
+      token
+    });
+  }
+  // 发布者
+  publisher(topic,...args){
+    if(!this.topics[topic]){
+      return false;
+    }
+    for(let i = 0,len = this.topics[topic].length;i<len;i++){
+      this.topics[topic][i].func.apply(this,args);
+    }
+  }
+  // 删除订阅者
+  unsubscribe(topic){
+    if(!this.topics[topic]){
+      return false;
+    }
+    delete this.topics[topic]
+  }
+}
 var  a = new Subscribe1();
 
 a.subscribe('add',function(...args){

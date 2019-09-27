@@ -44,3 +44,19 @@ const obj = {
 const aaa = aa.binds(obj);
 aaa(4,5,6);
 
+
+Function.prototype.bind = function(oThis,...args1){
+  if(typeof this !== 'function'){
+    throw new TypeError('类型错误');
+  }
+  let fBound = this;
+  let fn = function(){}
+  let fToBind = function(...args2){
+   return fBound.apply(this instanceof fBound ? this : oThis,[...args1,...args2])
+  }
+  if(this.prototype){
+    fToBind.prototype = this.prototype
+  }
+  fToBind.prototype = new fn();
+  return fToBind;
+}

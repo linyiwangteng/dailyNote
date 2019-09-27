@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>*{padding:0;margin: 0;}</style>
+  <style>
+    .box-shadow{
+      position: fixed;
+      top:0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .alert-box{
+      width: 100px;
+      height: 200px;
+      /* overflow: hidden; */
+      overflow: scroll;
+    }
+    .box{
+      width: 100%;
+      height: 500px;
+      background: red;
+    }
+  </style>
+</head>
+<body>
+  <div style="width: 100%;height:1000px;" class="">
+    <p abc="10" data-1="20">abc</p>
+    <p abc="10" data-2="20">abc</p>
+    <p abc="10" data-3="20">abc</p>
+    <p abc="10" data-4="20">abc</p>
+    <p abc="10" data-5="20">abc</p>
+    <p abc="10" data-6="20">abc</p>
+    <p abc="10" data-7="20">abc</p>
+    <p abc="10" data-8="20">abc</p>
+    <p abc="10" data-9="20">abc</p>
+    <p abc="10" data-10="20">abc</p>  
+  </div>
+  <div class="box-shadow">
+    <div class="alert-box">
+      <div class="box">
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    let boxShadow = document.getElementsByClassName("box-shadow")[0];
+    boxShadow.addEventListener('touchmove',function(e){
+      e.stopPropagation();
+      e.preventDefault();
+    },false);
+    
+    let box = document.querySelector('.alert-box');
+    let firstY = 0;
+    box.addEventListener('touchstart',function(e){
+      firstY = e.targetTouches[0].clientY;
+    },false);
+    box.addEventListener('touchmove',function(e){
+      // e.stopPropagation();
+      let target = document.getElementById('canmove')
+      let offsetHeight = target.offsetHeight,
+            scrollHeight = target.scrollHeight;
+      let changedTouches = e.changedTouches;
+      let scrollTop = target.scrollTop;
+      if (changedTouches.length > 0) {
+      let touch = changedTouches[0] || {};
+      let moveY = touch.clientY;
+      if (moveY > this.firstY && scrollTop === 0) {
+      // 滑动到弹窗顶部临界条件
+              e.preventDefault()
+        return false
+        } else if (moveY < this.firstY && scrollTop + offsetHeight >= scrollHeight) {
+        // 滑动到底部临界条件
+                e.preventDefault()
+        return false
+        }
+      }
+    },false);
+  </script>
+</body>
+</html>

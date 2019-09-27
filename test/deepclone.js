@@ -26,10 +26,12 @@ function deepclone_arr(target){
 function deepclone_arr_self(target,map = new WeakMap()) {
   if(typeof target === 'object') {
     const cloneTarget = Array.isArray(target) ? [] : {};
+    //start 
     if(map.get(target)){
       return target
     }
     map.set(target,cloneTarget);
+    // end
     for(let i in target){
       cloneTarget[i] = deepclone_arr_self(target[i],map);
     }
@@ -47,7 +49,7 @@ function  forEach(arr,fn){
     fn(arr[index],index);
   }
 }
-
+// 优化for in
 function deepclone_arr_self(target,map = new WeakMap()) {
   if(typeof target === 'object') {
     let isArray = Array.isArray(target);
@@ -87,3 +89,29 @@ let obj = {
 obj.obj = obj;
 const newobj = deepclone_arr_self(obj);
 console.log(newobj);
+
+
+
+// 最一般的写法
+function checkedType(target){
+  return Object.prototype.toString.call(target).slice(8,-1);
+}
+function clone(target){
+  let result, targetType = checkedType(target);
+  if(targetType === 'object'){
+    result = {}
+  }else if(targetType === 'Array') {
+    result = [];
+  }else{
+    return targetType;
+  }
+  for(let i in target) {
+    let value = target[i];
+    if(checkedType(value) === 'object' || checkedType(value) === 'Array') {
+      result[i] = clone(value);
+    }else{
+      result[i] = value;
+    }
+  }
+  return result;
+}
