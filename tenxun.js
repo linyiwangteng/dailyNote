@@ -1,0 +1,130 @@
+// 小程序腾讯视频返回的数据
+var return_data = {
+	"dltype": 1,
+	"exem": 0,
+	"fl": {
+		"cnt": 2,
+		"fi": [{
+			"id": 100701,
+			"name": "msd",
+			"lmt": 0,
+			"sb": 1,
+			"cname": "标清;(270P)",
+			"br": 79,
+			"profile": 2,
+			"drm": 0,
+			"video": 1,
+			"audio": 1,
+			"fs": 2640569,
+			"super": 0,
+			"hdr10enh": 0,
+			"sl": 0
+		}, {
+			"id": 2,
+			"name": "mp4",
+			"lmt": 0,
+			"sb": 1,
+			"cname": "高清;(480P)",
+			"br": 104,
+			"profile": 1,
+			"drm": 0,
+			"video": 1,
+			"audio": 1,
+			"fs": 9333192,
+			"super": 0,
+			"hdr10enh": 0,
+			"sl": 1
+		}]
+	},
+	"hs": 0,
+	"ip": "118.26.128.195",
+	"ls": 0,
+	"preview": 87,
+	"s": "o",
+	"sfl": {
+		"cnt": 0
+	},
+	"tm": 1557972338,
+	"vl": {
+		"cnt": 1,
+		"vi": [{
+			"br": 104,
+			"ch": 0,
+			"cl": {
+				"fc": 0,
+				"keyid": "a0861la95aj.2"
+			},
+			"ct": 21600,
+			"drm": 0,
+			"dsb": 0,
+			"fmd5": "39a6509ef3fd9ad42146a6afb080834a",
+			"fn": "a0861la95aj.mp4",
+			"fs": 9333192,
+			"fst": 5,
+			"fvkey": "D1A78025FAA14D3F97963B219310EBC57DD8DA381723303C42C2BBA27F6AA917412E7B0A41A9EE026A8600E755930BD27DB64BDE39BD13B1A4C3151B6C82FBCADAF1573983910577241EA77B182DC2CBE1AFBB6E61C066F4D4140C0709669BD0",
+			"head": 0,
+			"hevc": 0,
+			"iflag": 0,
+			"level": 0,
+			"lnk": "a0861la95aj",
+			"logo": 1,
+			"mst": 8,
+			"pl": null,
+			"share": 1,
+			"sp": 0,
+			"st": 2,
+			"tail": 0,
+			"td": "87.38",
+			"ti": "为什么红牛售价贵？看看制作过程就明白了！",
+			"tie": 0,
+			"type": 24,
+			"ul": {
+				"ui": [{
+					"url": "http://123.125.244.29/om.tc.qq.com/AyruK7N0WFlCf0GeprUsa5lDLVQLzM43ejD9sWPpF8j4/uwMROfz2r5zEIaQXGdGnC2dfDmafRkP9ujxgqKjuATzMrE-2/",
+					"vt": 219,
+					"dtc": 0,
+					"dt": 2
+				}, {
+					"url": "http://123.125.244.30/om.tc.qq.com/AyruK7N0WFlCf0GeprUsa5lDLVQLzM43ejD9sWPpF8j4/uwMROfz2r5zEIaQXGdGnCmdfDmYDGtR85EupRLdBz8BWf_yL/",
+					"vt": 219,
+					"dtc": 0,
+					"dt": 2
+				}, {
+					"url": "http://123.125.244.14/om.tc.qq.com/AyruK7N0WFlCf0GeprUsa5lDLVQLzM43ejD9sWPpF8j4/uwMROfz2r5zEIaQXGdGnCWdfDmZl_2z_BtPzcJexnMX5CynN/",
+					"vt": 219,
+					"dtc": 0,
+					"dt": 2
+				}, {
+					"url": "http://video.dispatch.tc.qq.com/uwMROfz2r5zEIaQXGdGnDGdfDmbO0aV7IXsdLPahacsIllYH/",
+					"vt": 0,
+					"dtc": 0,
+					"dt": 2
+				}]
+			},
+			"vh": 486,
+			"vid": "a0861la95aj",
+			"videotype": 31,
+			"vr": 0,
+			"vst": 2,
+			"vw": 864,
+			"wh": 1.7777778,
+			"wl": {
+				"wi": [{
+					"id": 43,
+					"x": 22,
+					"y": 22,
+					"w": 150,
+					"h": 46,
+					"a": 100,
+					"md5": "0946c22582daa84a63df7cee86f52962",
+					"url": "http://puui.qpic.cn/vcolumn_pic/0/huoguo_v2.png/0",
+					"surl": "https://puui.qpic.cn/vcolumn_pic/0/huoguo_v2.png/0"
+				}]
+			},
+			"uptime": 1555307854,
+			"fvideo": 0,
+			"fvpint": 0,
+			"swhdcp": 0
+		}]
+	}
+}

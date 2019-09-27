@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function ceshi(...num){
+      return num.reduce((pre,next,index)=>{
+        console.log(index)
+        return pre+next;
+      },100)
+    }
+    let reuslt = ceshi(1,2,3,4,5,6);
+    console.log(reuslt);
+
+    // var carts = {
+    //   _wheels: 4,
+    //   get wheels(){
+    //     return this._wheels;
+    //   },
+    //   set wheels(value){
+    //     if(value < this._wheels){
+    //       throw new Error('too small');
+    //     }else{
+    //       this._wheels = value;
+    //     }
+    //   }
+    // }
+    // console.log('carts has ',carts.wheels);
+    // carts.wheels = 20;
+    // console.log('carts has ',carts.wheels);
+    (function ceshi1(){
+      let val = Reflect.ownKeys(arguments);
+      console.log(val)
+    })();
+    
+    function add(a){
+      function _add(b){
+        a = a+b;
+        return _add;
+      }
+      _add.toString = function () {return a;}
+      return _add; 
+    }
+
+    console.log(add(1));
+    console.log(add(1)(2));
+    console.log(add(1)(2)(3));
+
+    Array.prototype._map = function (fn) { 
+      // console.log(this);
+      for(let i = 0,len = this.length;i<len;i++){
+        // fn(this[i],i,this);
+        fn.call(this,this[i],i,this)
+      }
+      
+     }
+  //   var a = new Array();
+  //   a.push(1);
+  //   a.push(2);
+  //   a.push(3)
+  //  a._map(function(item,index,arr){
+  //   console.log(item,index,arr)
+  //  })
+
+  // let bb = [3,2,6,1,8,5,3,2,5]
+  // bb.sort(function (a,b) { return a-b; });
+  // console.log(bb)
+
+    
+  
+  </script>
+</body>
+</html>
