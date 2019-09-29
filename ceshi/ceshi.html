@@ -8,15 +8,6 @@
 </head>
 <body>
   <script>
-    function ceshi(...num){
-      return num.reduce((pre,next,index)=>{
-        console.log(index)
-        return pre+next;
-      },100)
-    }
-    let reuslt = ceshi(1,2,3,4,5,6);
-    console.log(reuslt);
-
     // var carts = {
     //   _wheels: 4,
     //   get wheels(){
@@ -33,6 +24,7 @@
     // console.log('carts has ',carts.wheels);
     // carts.wheels = 20;
     // console.log('carts has ',carts.wheels);
+    
     (function ceshi1(){
       let val = Reflect.ownKeys(arguments);
       console.log(val)
@@ -52,9 +44,7 @@
     console.log(add(1)(2)(3));
 
     Array.prototype._map = function (fn) { 
-      // console.log(this);
       for(let i = 0,len = this.length;i<len;i++){
-        // fn(this[i],i,this);
         fn.call(this,this[i],i,this)
       }
       
