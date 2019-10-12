@@ -43,8 +43,104 @@ module.exports = {
     crossOriginLoading:'anonymous',
     crossOriginLoading:'false'
   },
+  // 配置模块相关
+  module: {
+    rules: [
+      // 配置Loader
+      {
+        test: /\.jsx?$/,
+        include:[
+          // 只命中这里面的文件
+          path.resolve(__dirname,'app')
+        ],
+        exclude: [
+          // 忽略这里面的文件
+          path.resolve(__dirname,'app/demo-files'),
+        ],
+        use:[
+          // 使用哪些loader，有先后次序，从后向前执行
+          'style-loader', //直接使用Loader的名称
+          {
+            loader:'css-loader',
+            options: {
+              // 向html-loader传一些参数
+            }
+          }
+        ]
+      }
+    ],
+    noParse: [
+      // 不用解析和处理的模块
+      /special-library\.js$/  //用正则匹配
+    ]
+  },
+  plugin: [],
+  // 配置选择模块的规则
   resolve:{
-    modules:{},
-    alias:{}
+    modules:[
+      'node_modules',
+      path.resolve(__dirname,'app')
+    ],
+    extensions: ['.js','.json','.jsx','.css'],
+    alias:{
+      // 模块别名配置，用于映射模块
+      // 将'module'映射成‘new-module’,同样，‘module/path/file’也会被映射成'new-module/path/file'
+      'module':'new-module',
+      // 使用结尾符合$后，将'only-module'映射成'new-module',
+      // 但是不像上面的，'module/path/file'不会被映射成‘new-module/path/file’
+      'only-module$':'new-module'
+    },
+    symlinks: true,
+    descriptionFiles:['package.json'],
+    mainFields:['main'],
+    enforceExtension:false
+  },
+  // 输出文件的性能检查配置
+  performance: {
+    hints: 'warning', //有性能问题时输出警告
+    hints: 'error', // 有性能问题时输出错误
+    hints: 'false', //关闭性能检查
+    maxAssetSize: 200000, //最大文件的大小
+    maxEntrypointSize: 400000, //最大入口文件的大小
+    assetFilter: function(assetFiltername){
+      return assetFiltername.endsWith('.css') || assetFiltername.endsWith('.js');
+    }
+  },
+  devtool:'source-map', //配置source-map类型
+  context: __dirname, //Webpack使用的根目录，string类型必须是绝对路径
+  // 配置输出代码的运行环境
+  target:'web', //'webworker','node','async-node','node-webkit','electron-main','electron-render',
+  externals:{
+    // 使用来自js运行环境提供的全局变量
+    jquery:'jQuery'
+  },
+  stats: {
+    assets:true,
+    colors:true,
+    errors:true,
+    errorDetails:true,
+    hash:true
+  },
+  devServer: {
+    proxy: {
+      '/api':'http://......',
+      
+    },
+    contentBase: path.join(__dirname,'public'),
+    compress: true, //是否开启Gzip压缩
+    historyApiFallback: true, //是否开发HTML5 History API网页
+    hot:true, //是否开启模块热替换功能
+    https: false,
+  },
+  profile:true, //是否捕获webpack构建的性能信息，用于分析是什么原因导致构建性能不佳
+  cache: false, //是否启动缓存来提升构建速度
+  watch: true,  //是否开始
+  // 监听模式选项
+  watchOptions:{
+    ignored: /node_modules/,
+    // 监听到变化发送后，等300ms在执行动作，节流，防止文件更新太快导致重新编译频率太快，默认300ms
+    aggregateTimeout: 300,
+    // 不停地询问系统指定的文件有没有发送变化，默认每秒询问1000次
+    poll:1000
   }
 }

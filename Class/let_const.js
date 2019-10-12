@@ -15,8 +15,23 @@ for(let i = 0; i< 10;i++){
  * 因为js引擎内部会记住上一轮循环的值，初始化本轮的变量i时，就在上一轮循环的基础上进行计算。
  * for循环还有一个特别的地方，就是设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域。
  * */ 
+
 /**
  * 不存在变量提升
  * 暂时性死区
  * 不允许重复声明
  * */ 
+
+ // 将对象彻底冻结
+let constantize = (obj) =>{
+  Object.freeze(obj);
+  Object.keys(obj).forEach( (key,i)=>{
+    if(typeof obj[key] === 'object') {
+      constantize(obj[keys])
+    }
+  })
+};
+
+// ES6声明变量的六种方法
+// var function let const Class import
+
