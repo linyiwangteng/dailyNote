@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="cid" style="width:1000px;height:1000px; "></canvas>
+  <img src="./xxx.jpeg" alt="" id="pic123" style="display: none;">
+  <script src="./fabric.min.js"></script>
+  <script>
+    window.onload =function(){
+      var canvas = new fabric.Canvas('cid',{
+        width: 500,
+        height: 500,
+      });
+      var rect = new fabric.Rect({
+ 
+        left:100,//距离画布左侧的距离，单位是像素
+
+        top:100,//距离画布上边的距离
+
+        fill:'red',//填充的颜色
+
+        width:20,//方形的宽度
+
+        height:20,//方形的高度
+
+        // angle:45
+
+      });
+      var circle = new fabric.Circle({
+        left:100,
+        top: 0,
+        radius: 20,
+        fill:'green',
+      });
+      var triangle = new fabric.Triangle({
+        width: 20, height: 30, fill: 'blue', left: 50, top: 50
+      });
+      var picEle = document.getElementById('pic123');
+      var pic = new fabric.Image(picEle,{  //设置图片位置和样子
+        left: 100,
+        top: 100,
+        angle: 30,
+        width: 400,
+        height: 50,
+        opacity: 0.85
+      });
+      canvas.add(pic);
+      // canvas.add(rect,circle,triangle);
+
+      circle.set('fill','pink');
+      circle.set({'strokeWidth':2,'stroke': 'rgba(ff,f0,f0,0.5)'});
+      rect.set({'angle':15}).set({'flipY':true});
+      // rect.set('selectable', false);
+
+      // fabric.Image.fromURL('./123.jpeg', function(oImg) {
+      //     oImg.scale(0.1);//图片缩小10倍
+      //     canvas.add(oImg);
+      // });
+      canvas.on('mouse:down', function(options) {
+        console.log(options.e.clientX, options.e.clientY)
+      })
+      
+    }
+  </script>
+</body>
+</html>

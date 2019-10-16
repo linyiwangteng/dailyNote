@@ -8,7 +8,7 @@ import {MessageBox,Message} from 'element-ui';
 let loginUrl = '/login';
 
 // 根据环境切换借口地址
-axios.defaults.baseUrl = process.env_VUE_APP_API
+axios.defaults.baseUrl = process.env_VUE_APP_API   //vue中本地配置常量
 axios.defaults.headers = {'X-Request-Width': 'XMLHttpRequest'}
 axios.defaults.timeout = 60000
 
@@ -18,7 +18,12 @@ axios.interceptors.request.use(
         if(router.history.current.path != loginUrl) {
             let token = window.sessionStorage.getItem('token')
             if(token == null) {
-                router.replace({path:loginUrl,query:{redirect:router.currentRoute.fullPath}})
+                router.replace({
+                    path:loginUrl,
+                    query:{
+                        redirect:router.currentRoute.fullPath
+                    }
+                });
                 return false
             } else {
                 config.headers['Authorization'] = 'JWT'+token
